@@ -2,32 +2,50 @@
 
 /*
   Design tokens for DevLinks.
-  Values are extracted from the Figma style guide (node 1437-350).
-  Fill the CSS variables below with the real values from Figma.
+  Values/colors are approximated; refine from the Figma style guide (node 1437-350).
 */
 :root {
-  --color-bg-body: #ffffff;
-  --color-text: #111111;
-  --color-surface: #f4f4f5;
-  --color-surface-hover: #e4e4e7;
-  --color-stroke: #d4d4d8;
+  --color-text: #ffffff;
+  --color-surface: rgba(255, 255, 255, 0.1);
+  --color-surface-hover: rgba(255, 255, 255, 0.2);
+  --color-stroke: rgba(255, 255, 255, 0.2);
   --color-highlight: #8257e5;
   --radius-md: 8px;
   --radius-lg: 20px;
 }
 
-.dark {
-  --color-bg-body: #121214;
-  --color-text: #e1e1e6;
-  --color-surface: #202024;
-  --color-surface-hover: #29292e;
-  --color-stroke: #323238;
-  --color-highlight: #8257e5;
+/* Background images per theme and breakpoint. */
+.app-bg {
+  background-image: url("./assets/bg-mobile-light.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+@media (min-width: 768px) {
+  .app-bg {
+    background-image: url("./assets/bg-desktop-light.png");
+  }
+}
+
+.dark .app-bg {
+  background-image: url("./assets/bg-mobile.png");
+}
+
+@media (min-width: 768px) {
+  .dark .app-bg {
+    background-image: url("./assets/bg-desktop.png");
+  }
 }
 
 body {
-  background-color: var(--color-bg-body);
+  margin: 0;
   color: var(--color-text);
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100vh;
 }

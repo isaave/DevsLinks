@@ -1,32 +1,34 @@
-# React + TypeScript + Vite
+# DevLinks
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Página "link in bio" inspirada no Linktree, desenvolvida em React + Vite + TypeScript + Tailwind CSS, com suporte a tema claro/escuro persistido em `localStorage`.
 
-Currently, two official plugins are available:
+## Tecnologias
+- React 19
+- Vite
+- TypeScript
+- Tailwind CSS v4
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Como instalar e executar
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install
+npm run dev
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+Acesse http://localhost:5173.
+
+## Build de produção
+
+```bash
+npm run build
+npm run preview
+```
+
+## Estrutura
+```
+src/
+  components/   # Profile, LinkButton, ThemeToggle, SocialLinks
+  data/         # links e socials
+  App.tsx
+  index.css     # design tokens + estilos globais
+```
