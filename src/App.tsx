@@ -1,5 +1,4 @@
-import avatarDark from "./assets/avatar-dark.png";
-import avatarLight from "./assets/avatar-light.png";
+import minhafoto from "./assets/minhafoto.png";
 import { Profile } from "./components/features/Profile";
 import { LinkButton } from "./components/features/LinkButton";
 import { SocialLinks } from "./components/features/SocialLinks";
@@ -20,7 +19,7 @@ export default function App() {
         </div>
 
         <Profile
-          avatar={theme === "dark" ? avatarDark : avatarLight}
+          avatar={minhafoto}
           name="devlinks"
           bio="Links do meu portfólio"
         />
