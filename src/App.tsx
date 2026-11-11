@@ -14,15 +14,14 @@ export default function App() {
   return (
     <div className="app-bg flex min-h-screen flex-col items-center px-4 py-8">
       <div className="flex w-full max-w-md flex-col items-center gap-6">
-        <div className="self-end">
-          <ThemeToggle theme={theme} onToggle={toggleTheme} />
-        </div>
-
         <Profile
           avatar={minhafoto}
           name="Isabella Avelina"
-          bio="Links do meu portfólio"
         />
+
+        <div className="self-end">
+          <ThemeToggle theme={theme} onToggle={toggleTheme} />
+        </div>
 
         <main className="flex w-full flex-col gap-4">
           {links.map((link) => (
