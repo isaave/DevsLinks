@@ -118,6 +118,19 @@ Implementação de referência:
 }
 ```
 
+#### 🎯 Nota sobre o tema claro/escuro
+
+A aplicação dos tokens CSS funciona via variáveis definidas em `:root` (light) e `[data-theme='dark']` (dark). O React usa `useEffect` para definir `data-theme` no `<html>` imediatamente após o estado inicializar. Quando o `data-theme` já está ativo, as classes `border-[var(--stroke-color)]`, `bg-[var(--surface-color)]` etc. resolvem corretamente os valores do tema (comprovado pelo probe dinâmico criado dentro de `<main>`). Se houver aparente inversão de contraste, verifique se:
+
+1. O `data-theme='dark'` está presente no `<html>` (use DevTools > Elements > `<html>`).
+2. Não há conflitos de CSS inline ou `!important` sobrescrevendo os tokens.
+3. O `localStorage` tem a chave `devlinks:theme` com valor `light` ou `dark`.
+
+Se o tema parecer "preso" no light após toggle, force um hard reload (Cmd+Shift+R / Ctrl+Shift+R) para reexecutar o `useEffect` de sincronização.
+
+```
+```
+
 Regras:
 
 1. Use as variáveis CSS em vez de repetir valores nos componentes.
@@ -138,12 +151,13 @@ Regras:
 4. Garanta nomes acessíveis para ícones funcionais; ícones decorativos devem ser ignorados por tecnologias assistivas.
 5. Antes de instalar dependências, verifique se já estão disponíveis no projeto.
 
-### Backgrounds
+### Assets por tema
 
-Os assets de fundo por tema e breakpoint estão em `src/assets/`:
+Os assets de fundo e avatar variam conforme o tema e o breakpoint (`src/assets/`):
 
-- `bg-mobile-light.png` / `bg-mobile.png` (dark) — mobile
-- `bg-desktop-light.png` / `bg-desktop.png` (dark) — desktop (≥768px)
+- `bg-mobile-light.png` / `bg-mobile.png` (dark) — fundo mobile
+- `bg-desktop-light.png` / `bg-desktop.png` (dark) — fundo desktop (≥768px)
+- `avatar-light.png` / `avatar-dark.png` — avatar do perfil por tema
 
 ## Requisitos funcionais
 

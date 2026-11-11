@@ -5,8 +5,8 @@ export type Link = {
 };
 
 export const links: Link[] = [
-  { id: "github", label: "Veja meu portfólio no GitHub", url: "https://github.com" },
-  { id: "instagram", label: "Me siga no Instagram", url: "https://instagram.com" },
-  { id: "youtube", label: "Inscreva-se no meu canal", url: "https://youtube.com" },
-  { id: "linkedin", label: "Conecte-se no LinkedIn", url: "https://linkedin.com" },
+  { id: "github", label: "GitHub", url: "https://github.com/isaave" },
+  { id: "instagram", label: "Instagram", url: "https://www.instagram.com/isaa_avelina/" },
+  { id: "linkedin", label: "LinkedIn", url: "https://www.linkedin.com/in/isabella-avelina-de-oliveira-966938236/" },
+  { id: "youtube", label: "YouTube", url: "https://www.youtube.com/" },
 ];
