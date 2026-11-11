@@ -19,7 +19,7 @@ export default function App() {
           name="Isabella Avelina"
         />
 
-        <div className="self-end">
+        <div className="self-center">
           <ThemeToggle theme={theme} onToggle={toggleTheme} />
         </div>
 
