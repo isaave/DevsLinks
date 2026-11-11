@@ -20,7 +20,7 @@ export default function App() {
 
         <Profile
           avatar={minhafoto}
-          name="devlinks"
+          name="Isabella Avelina"
           bio="Links do meu portfólio"
         />
 
