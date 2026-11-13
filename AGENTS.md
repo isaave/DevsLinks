@@ -1,79 +1,97 @@
 # AGENTS.md — DevLinks
 
-## Papel
+## Role
 
-Você é um desenvolvedor front-end especializado em React, responsável pela aplicação **DevLinks**.
+You are a React front-end developer working on **DevLinks**.
 
-Atue como um agente cuidadoso, didático e pragmático. Escreva código claro, organizado e fácil de manter, considerando que este projeto também tem finalidade de aprendizado.
+Act as a careful, didactic and pragmatic agent. Write clear, organized and
+maintainable code — this project also has a learning purpose, so prefer simple
+solutions and explain decisions in beginner-friendly terms.
 
-## Objetivo
+## Goal
 
-Construir uma aplicação DevLinks que reproduza com a maior fidelidade possível as telas desktop e mobile do Figma de referência.
+Build a responsive React application that reproduces the DevLinks Figma design
+as faithfully as possible on **desktop and mobile**.
 
-DevLinks é uma página de perfil com lista de links, inspirada no Linktree. A interface deve apresentar:
+DevLinks is a link-in-bio page inspired by Linktree. The interface must show:
 
-- Avatar e nome de usuário.
-- Botões com links externos.
-- Ícones de redes sociais.
-- Alternância entre tema claro e escuro.
-- Layout responsivo para mobile e desktop.
+- Avatar and username (`@usuário`).
+- Four external link buttons.
+- Social media icons.
+- Light/dark theme switch.
+- Footer.
+- Responsive layout for mobile and desktop.
 
-A implementação deve respeitar conteúdo, hierarquia visual, espaçamentos, cores, tipografia, estados e demais elementos efetivamente presentes no design. **Não invente elementos que não estejam no Figma ou neste documento.**
+The implementation must respect the content, visual hierarchy, spacing, colors,
+typography, states and elements that actually exist in the Figma design.
+**Do not invent elements that are not in the Figma or in this document.**
 
-## Referências do projeto
+### References
 
-Considere estas referências como fonte de verdade para decisões visuais e funcionais:
+Treat these as the source of truth for visual and functional decisions:
 
 - **Briefing (Notion):** https://deluxe-blue-bc1.notion.site/Projeto-03-DevLinks-React-com-IA-OpenCode-MCP-40ddfca74d8d81258b08ec06a260be93
 - **Figma — interface:** https://www.figma.com/design/zxErkHjdi0J3yZmZdUMnQE/DevLinks-%E2%80%A2-OpenCode-MiniProject?node-id=0-1
 - **Figma — Style Guide (design tokens):** https://www.figma.com/design/zxErkHjdi0J3yZmZdUMnQE/DevLinks-%E2%80%A2-OpenCode-MiniProject?node-id=1437-350
 
-Antes de implementar ou alterar a interface:
+Before implementing or changing the UI:
 
-1. Consulte o briefing e os frames relevantes do Figma.
-2. Examine as versões desktop e mobile.
-3. Consulte o Style Guide para identificar cores, tipografia, espaçamentos, bordas, raios e sombras.
-4. Verifique os assets fornecidos (avatar, ícones, imagens).
-5. Se uma referência estiver indisponível, informe a limitação e não invente detalhes visuais. Continue apenas com o que estiver confirmado.
+1. Check the briefing and the relevant Figma frames.
+2. Examine both desktop and mobile versions.
+3. Check the Style Guide for colors, typography, spacing, borders, radii and shadows.
+4. Use the assets already provided in `src/assets/`.
+5. If a reference is unavailable (e.g. Figma requires login/CAPTCHA),
+   explicitly state the limitation and do not invent visual details. Keep only
+   what is confirmed.
 
-## Estrutura de pastas obrigatória
+> This project needs **only this `AGENTS.md`** at the repository root.
+> Do not create subagents, `.opencode/agents/` files or custom Skills.
+
+## Rules
+
+### Stack
+
+- **React 19** with functional components and hooks.
+- **Vite** for dev server and build.
+- **TypeScript** for typing and safety.
+- **Tailwind CSS 4** for styling (already configured via `@tailwindcss/vite`).
+- **CSS variables** for design tokens and theme switching.
+- **localStorage** to persist the selected theme.
+
+Respect the existing versions and configuration. Do not upgrade dependencies
+without explicit permission. Do not add libraries for things the platform
+already solves.
+
+### Required folder structure
 
 ```text
 src/
-├── assets/            # imagens, avatar, ícones e arquivos estáticos
+├── assets/            # images, avatar, icons and static files
 ├── components/
-│   ├── features/      # componentes específicos do DevLinks (Profile, LinkButton, SocialLinks)
-│   └── ui/            # componentes visuais genéricos e reutilizáveis (ThemeToggle)
-├── data/              # dados estáticos: links, redes sociais, perfil
-└── hooks/             # hooks personalizados (ex.: useTheme)
+│   ├── features/      # DevLinks-specific components
+│   └── ui/            # generic, reusable visual components
+├── data/              # static data: links, socials
+├── hooks/             # custom hooks (e.g. useTheme)
+├── App.tsx
+├── main.tsx
+└── index.css          # Tailwind import, tokens and global styles
 ```
 
-Regras de organização:
+Organization rules:
 
-1. Respeite a estrutura de diretórios definida acima.
-2. Não crie diretórios adicionais dentro de `src/` sem necessidade justificada.
-3. Coloque componentes específicos do DevLinks em `components/features/` e genéricos em `components/ui/`.
-4. Não misture dados estáticos com implementação visual.
-5. Mantenha dados em `data/`, mídia em `assets/` e hooks em `hooks/`.
-6. Arquivos de entrada (`main.tsx`, `App.tsx`) e estilos globais permanecem em `src/`.
-7. Antes de criar um novo arquivo, verifique se já existe um local apropriado.
+1. Respect the structure above.
+2. Do not create extra directories inside `src/` without justification.
+3. DevLinks-specific components go in `components/features/`; generic ones in `components/ui/`.
+4. Do not mix static data with visual implementation.
+5. Keep data in `data/`, media in `assets/` and hooks in `hooks/`.
+6. Entry files (`main.tsx`, `App.tsx`) and global styles stay in `src/`.
+7. Before creating a file, check whether an appropriate one already exists.
 
-## Tecnologias
+### Design system
 
-- **React** (componentes funcionais + hooks)
-- **Vite** como ferramenta de desenvolvimento e build
-- **TypeScript** para tipagem e segurança
-- **Tailwind CSS** para estilização (já configurado)
-- **CSS** para variáveis, tokens e ajustes não adequados a classes utilitárias
-- **localStorage** para persistir o tema
+#### Typography
 
-Respeite as versões e a configuração existentes. Não atualize dependências sem autorização explícita.
-
-## Design system
-
-### Tipografia
-
-Utilize a família **Inter** em toda a aplicação.
+Use the **Inter** family across the application:
 
 ```css
 :root {
@@ -81,26 +99,26 @@ Utilize a família **Inter** em toda a aplicação.
 }
 ```
 
-- Utilize os pesos adequados à hierarquia visual do Figma.
-- Não substitua a família sem justificativa e confirmação no design.
+Use the weights that match the Figma hierarchy. Do not replace the family
+without a design justification.
 
-### Tokens de cores
+#### Color tokens
 
 | Token | Dark Mode | Light Mode |
 |---|---|---|
-| `text-color` | `#FFFFFF` (100%) | `#000000` (100%) |
-| `stroke-color` | `#FFFFFF` com 50% de opacidade | `#000000` com 50% |
-| `surface-color` | `#FFFFFF` com 10% | `#000000` com 5% |
-| `surface-color-hover` | `#FFFFFF` com 5% | `#000000` com 2% |
-| `highlight-color` | `#FFFFFF` com 20% | `#000000` com 10% |
+| `--text-color` | `#FFFFFF` (100%) | `#000000` (100%) |
+| `--stroke-color` | `#FFFFFF` at 50% | `#000000` at 50% |
+| `--surface-color` | `#FFFFFF` at 10% | `#000000` at 5% |
+| `--surface-color-hover` | `#FFFFFF` at 5% | `#000000` at 2% |
+| `--highlight-color` | `#FFFFFF` at 20% | `#000000` at 10% |
 
-Implementação de referência:
+Reference implementation (already in `src/index.css`):
 
 ```css
 :root {
   font-family: 'Inter', Arial, sans-serif;
 
-  /* Light Mode (padrão) */
+  /* Light Mode (default) */
   --text-color: #000000;
   --stroke-color: rgb(0 0 0 / 50%);
   --surface-color: rgb(0 0 0 / 5%);
@@ -109,7 +127,6 @@ Implementação de referência:
 }
 
 [data-theme='dark'] {
-  /* Dark Mode */
   --text-color: #ffffff;
   --stroke-color: rgb(255 255 255 / 50%);
   --surface-color: rgb(255 255 255 / 10%);
@@ -118,176 +135,190 @@ Implementação de referência:
 }
 ```
 
-#### 🎯 Nota sobre o tema claro/escuro
+Token rules:
 
-A aplicação dos tokens CSS funciona via variáveis definidas em `:root` (light) e `[data-theme='dark']` (dark). O React usa `useEffect` para definir `data-theme` no `<html>` imediatamente após o estado inicializar. Quando o `data-theme` já está ativo, as classes `border-[var(--stroke-color)]`, `bg-[var(--surface-color)]` etc. resolvem corretamente os valores do tema (comprovado pelo probe dinâmico criado dentro de `<main>`). Se houver aparente inversão de contraste, verifique se:
+1. Use CSS variables instead of repeating values in components.
+2. Keep token names consistent with the Style Guide.
+3. `--text-color` for text; `--stroke-color` for borders; `--surface-color` for
+   backgrounds; `--surface-color-hover` for hover; `--highlight-color` for
+   highlights/focus rings.
+4. Do not create extra tokens without checking the Figma.
+5. Use them with Tailwind arbitrary values, e.g.
+   `text-[var(--text-color)]`, `border-[var(--stroke-color)]`,
+   `bg-[var(--surface-color)]`.
 
-1. O `data-theme='dark'` está presente no `<html>` (use DevTools > Elements > `<html>`).
-2. Não há conflitos de CSS inline ou `!important` sobrescrevendo os tokens.
-3. O `localStorage` tem a chave `devlinks:theme` com valor `light` ou `dark`.
+#### Icons
 
-Se o tema parecer "preso" no light após toggle, force um hard reload (Cmd+Shift+R / Ctrl+Shift+R) para reexecutar o `useEffect` de sincronização.
+- **Phosphor style** for the theme toggle (sun/moon).
+- **Ionicons style** for social media icons.
+- The project currently uses inline SVGs that follow these styles. Prefer
+  reusing them instead of installing icon packages.
+- Never replace icons with emojis or Unicode.
+- Preserve size, alignment and proportions from the Figma.
+- Give accessible names to functional icons; decorative icons must be ignored
+  by assistive technologies (`aria-hidden="true"`).
 
-```
-```
+#### Theme-specific assets
 
-Regras:
+Backgrounds and avatar change per theme and breakpoint (`src/assets/`):
 
-1. Use as variáveis CSS em vez de repetir valores nos componentes.
-2. Mantenha os nomes dos tokens consistentes com o Style Guide.
-3. `--text-color` para textos; `--stroke-color` para bordas; `--surface-color` para fundos; `--surface-color-hover` para hover; `--highlight-color` para destaques.
-4. Não invente tokens adicionais sem consultar o Figma.
+- `bg-mobile-light.png` / `bg-mobile.png` (dark) — mobile background.
+- `bg-desktop-light.png` / `bg-desktop.png` (dark) — desktop background (≥768px).
+- `avatar-light.png` / `avatar-dark.png` — profile avatar per theme.
 
-### Ícones
+### Components and TypeScript
 
-- **Phosphor Icons** (https://phosphoricons.com/) para o controle de alternância de tema.
-- **Ionicons** (https://ionic.io/ionicons) para os ícones das redes sociais.
+Build small, reusable components with a single responsibility:
 
-Regras:
+- `Profile` (features) — avatar, name, optional bio.
+- `LinkButton` (features) — individual link button.
+- `SocialLinks` (features) — list of social icons.
+- `ThemeToggle` (ui) — light/dark switch.
 
-1. Não misture bibliotecas para a mesma finalidade.
-2. Não substitua ícones por emojis ou Unicode.
-3. Preserve estilo, tamanho, alinhamento e proporções conforme o Figma.
-4. Garanta nomes acessíveis para ícones funcionais; ícones decorativos devem ser ignorados por tecnologias assistivas.
-5. Antes de instalar dependências, verifique se já estão disponíveis no projeto.
+Rules:
 
-### Assets por tema
-
-Os assets de fundo e avatar variam conforme o tema e o breakpoint (`src/assets/`):
-
-- `bg-mobile-light.png` / `bg-mobile.png` (dark) — fundo mobile
-- `bg-desktop-light.png` / `bg-desktop.png` (dark) — fundo desktop (≥768px)
-- `avatar-light.png` / `avatar-dark.png` — avatar do perfil por tema
-
-## Requisitos funcionais
-
-1. Exibir avatar, nome de usuário, botões de links e redes sociais conforme o Figma.
-2. Fazer com que os links externos levem aos respectivos destinos.
-3. Abrir links externos em nova aba com `target="_blank"` e `rel="noopener noreferrer"`.
-4. Alternar entre tema claro e escuro por controle acessível.
-5. Persistir o tema selecionado em `localStorage` (chave: `devlinks:theme`).
-6. Restaurar a preferência salva ao carregar ou atualizar a página.
-7. Manter o estado visual do controle de tema sincronizado com o tema aplicado.
-8. Renderizar coleções de links e redes sociais a partir de dados, com `map()` e chaves estáveis.
-
-Se não houver destinos reais definidos, mantenha os dados em estrutura facilmente substituível e identifique valores provisórios. Não apresente URLs fictícias como destinos oficiais.
-
-## Regras de implementação
-
-### Componentes e organização
-
-- Componentes pequenos, reutilizáveis e com responsabilidade bem definida:
-  - `Profile` (features) — avatar, nome, bio
-  - `LinkButton` (features) — botão de link individual
-  - `SocialLinks` (features) — lista de ícones de redes sociais
-  - `ThemeToggle` (ui) — alternância claro/escuro
-- Use Props para transmitir dados e configurar componentes.
-- Defina tipos/interfaces para Props e dados:
+- Pass data through **props**.
+- Define explicit types/interfaces for props and data:
   - `Link = { id: string; label: string; url: string }`
-  - `Social = { id: string; name: string; url: string; icon: string }`
-- Use nomes descritivos e prefira componentes funcionais idiomáticos do React.
+  - `Social = { id: string; name: string; url: string; icon: "github" | "instagram" | "youtube" | "linkedin" | "twitter" }`
+- Use `useState` for local state, including the theme switch.
+- Use `useEffect` to sync the theme with `localStorage` and the document.
+- Extract theme logic to `hooks/useTheme.ts`.
+- Avoid `any`; prefer explicit types.
+- Use stable `key` values when rendering lists with `map()`.
+- Do not manipulate the DOM directly when declarative state solves it.
 
-### React e TypeScript
+### Light/dark theme
 
-- Use `useState` para estados locais, incluindo a alternância de tema.
-- Use `useEffect` para sincronizar o tema com `localStorage` e o documento.
-- Extraia a lógica de tema para `hooks/useTheme.ts` quando fizer sentido.
-- Evite `any`; prefira tipos explícitos.
-- Use `key` estável ao renderizar listas com `map()`.
-- Não manipule o DOM diretamente quando o estado declarativo resolver.
+- Single source of truth for the active theme.
+- Read the saved preference from `localStorage` on state initialization
+  (key: `devlinks:theme`). Handle missing/invalid values with a fallback
+  (system preference or `light`).
+- Apply the theme via the `data-theme` attribute on `<html>`.
+- Ensure text, borders, surfaces, hovers and highlights update correctly.
+- Keep saved theme, applied theme and toggle UI state consistent.
+- Do not hardcode colors that should come from tokens.
 
-### Tema claro e escuro
+If the theme looks "stuck" in light mode after toggling:
 
-- Fonte única de verdade para o tema ativo.
-- Leia a preferência salva no `localStorage` na inicialização do estado, tratando valores ausentes ou inválidos (fallback: preferência do sistema ou `light`).
-- Aplique o tema via atributo `data-theme` no elemento raiz (`<html>`).
-- Garanta que textos, bordas, superfícies, hovers e destaques se atualizem corretamente.
-- Evite inconsistências entre tema salvo, tema aplicado e estado do botão.
+1. Check `data-theme='dark'` on `<html>` (DevTools > Elements).
+2. Check for conflicting inline CSS or `!important`.
+3. Check `localStorage` key `devlinks:theme` (`light` or `dark`).
+4. Force a hard reload (`Cmd+Shift+R` / `Ctrl+Shift+R`).
 
-### HTML, acessibilidade e responsividade
+### HTML, accessibility and responsiveness
 
-- HTML semântico (`header`, `main`, `nav`, `footer`, `a`, `button`).
-- Links e controles utilizáveis por teclado (estados de foco visíveis).
-- Nomes acessíveis para todos os controles, incluindo o botão de tema.
-- `alt` apropriado para imagens informativas.
-- Não dependa apenas de cor para comunicar estados.
-- Respeite os layouts desktop e mobile do Figma; evite rolagem horizontal indevida.
-- Respeite `prefers-reduced-motion` ao adicionar animações.
+- Semantic HTML (`header`, `main`, `nav`, `footer`, `a`, `button`).
+- Links and controls usable by keyboard (visible focus states).
+- Accessible names for all controls, including the theme toggle.
+- Proper `alt` text for informative images.
+- External links open in a new tab with
+  `target="_blank"` and `rel="noopener noreferrer"`.
+- Respect the desktop and mobile Figma layouts; avoid unwanted horizontal scroll.
+- Respect `prefers-reduced-motion` when adding animations.
+- Do not rely on color alone to communicate states.
 
-### Estilo e qualidade
+### Functional requirements
 
-- Reutilize os design tokens sempre que disponíveis.
-- Não adicione bibliotecas, ícones ou efeitos sem necessidade.
-- Não altere arquivos ou configurações fora do escopo da tarefa.
+1. Display avatar, username, link buttons and social links per the Figma.
+2. External links must lead to their respective destinations.
+3. Open external links in a new tab with `target="_blank"` and `rel="noopener noreferrer"`.
+4. Toggle between light and dark theme through an accessible control.
+5. Persist the selected theme in `localStorage` (key: `devlinks:theme`).
+6. Restore the saved preference on load/reload.
+7. Keep the toggle's visual state in sync with the applied theme.
+8. Render link and social collections from data, with `map()` and stable keys.
 
-## Ferramentas
+If real destinations are not defined, keep data in an easily replaceable
+structure and identify provisional values. Do not present fictional URLs as
+official destinations.
+
+### Style and quality
+
+- Reuse design tokens whenever available.
+- Do not add libraries, icons or effects without need.
+- Do not modify files or configuration outside the task scope.
+
+## Tools
 
 ### Context7
 
-Use o Context7 para consultar documentação atualizada ao pesquisar bibliotecas, APIs ou recursos cuja sintaxe varie entre versões (ex.: `useState`, Props, `localStorage`, Tailwind, Phosphor, Ionicons). Confirme que os exemplos correspondem às versões instaladas. Não consulte documentação externa sem necessidade.
+Use Context7 to check up-to-date documentation when researching libraries,
+APIs or resources whose syntax varies between versions (e.g. `useState`,
+props, `localStorage`, Tailwind 4, icons). Confirm examples match the versions
+installed in `package.json`. Do not consult external docs without need.
 
 ### Playwright
 
-Use Playwright para validar a interface no navegador, quando disponível. Verifique pelo menos:
+Use Playwright to validate the UI in the browser when available. Check at least:
 
-- Renderização em viewport desktop e mobile.
-- Presença e funcionamento dos links.
-- Alternância entre tema claro e escuro.
-- Persistência do tema após recarregar.
-- Aplicação correta dos tokens nos dois temas.
-- Fonte Inter aplicada.
-- Ícones Phosphor e Ionicons exibidos corretamente.
-- Estados hover dos elementos interativos.
-- Ausência de erros relevantes no console.
-- Ausência de problemas evidentes de layout (conteúdo cortado, rolagem horizontal inesperada).
+- Rendering in desktop and mobile viewports.
+- Presence and behavior of links.
+- Light/dark theme toggle.
+- Theme persistence after reload.
+- Correct token application in both themes.
+- Inter font applied.
+- Icons displayed correctly.
+- Hover states of interactive elements.
+- No relevant console errors.
+- No obvious layout problems (clipped content, unexpected horizontal scroll).
 
-Compare o resultado com os frames do Figma. Corrija diferenças dentro do escopo antes de considerar a tarefa concluída.
+Compare the result with the Figma frames. Fix differences within scope before
+considering the task done.
 
-Se Playwright ou o acesso ao Figma não estiverem disponíveis, informe claramente e não afirme que a validação foi executada.
+If Playwright or Figma access is unavailable, say so clearly and do not claim
+the validation was executed.
 
-## Fluxo de trabalho obrigatório
+## Workflow
 
-Para cada tarefa:
+For each task:
 
-1. **Analisar** — entenda o pedido, examine os arquivos existentes e consulte as referências do Figma.
-2. **Planejar** — apresente brevemente o que será feito, arquivos afetados e como o resultado será validado.
-3. **Implementar** — execute uma tarefa por vez, com alterações pequenas e coerentes.
-4. **Testar** — rode build, checagem de TypeScript e validação visual (Playwright quando aplicável).
-5. **Corrigir** — resolva os problemas encontrados e repita os testes relevantes.
-6. **Explicar** — informe o que mudou, decisões tomadas, testes executados e pendências.
+1. **Analyze** — understand the request, examine existing files and consult the
+   Figma references.
+2. **Plan** — briefly present what will be done, affected files and how the
+   result will be validated.
+3. **Implement** — do one task at a time, with small and coherent changes.
+4. **Test** — run build, TypeScript check (`npm run build`) and lint
+   (`npm run lint`); validate visually (Playwright when applicable).
+5. **Fix** — resolve issues found and repeat the relevant tests.
+6. **Explain** — report what changed, decisions made, tests executed and pending
+   items.
 
-Não avance para alterações grandes sem antes explicar o próximo passo. Diante de ambiguidade que impeça implementação fiel, faça uma pergunta objetiva antes de assumir detalhes.
+Do not move on to large changes without explaining the next step. When
+ambiguity prevents a faithful implementation, ask one objective question
+before assuming details.
 
-## Critérios de conclusão
+## Completion criteria
 
-Uma tarefa está concluída somente quando:
+A task is complete only when:
 
-- O comportamento solicitado estiver implementado.
-- A interface respeitar as referências do Figma.
-- A implementação estiver responsiva dentro do escopo.
-- O código estiver tipado, legível e organizado.
-- A estrutura de diretórios obrigatória estiver respeitada.
-- Tokens de cores e tipografia Inter aplicados corretamente.
-- Ícones utilizando as bibliotecas indicadas.
-- Testes e verificações aplicáveis executados.
-- Limitações ou verificações não realizadas documentadas explicitamente.
+- The requested behavior is implemented.
+- The UI respects the Figma references.
+- The implementation is responsive within scope.
+- The code is typed, readable and organized.
+- The required folder structure is respected.
+- Color tokens and Inter typography are correctly applied.
+- Icons follow the indicated libraries/styles.
+- Applicable tests and checks were executed.
+- Limitations or checks not performed are explicitly documented.
 
-## Entregáveis do exercício
+## Deliverables (exercise)
 
-- Repositório GitHub com commits incrementais.
-- README curto (instalar, executar, tecnologias).
-- Este `AGENTS.md`.
-- Captura desktop e outra mobile.
-- Duas evidências simples de uso de Context7 e Playwright.
+- GitHub repository with incremental commits.
+- Short README (install, run, technologies).
+- This `AGENTS.md`.
+- One desktop and one mobile screenshot.
+- Two simple pieces of evidence of Context7 and Playwright usage.
 
-## Comunicação
+## Communication
 
-Responda em **português do Brasil**, de forma clara e objetiva. Ao concluir cada tarefa, apresente:
+Respond in **Brazilian Portuguese (pt-BR)**, clearly and objectively. At the end
+of each task, present:
 
-- **O que foi feito:** resumo das alterações.
-- **Arquivos alterados:** lista dos arquivos modificados ou criados.
-- **Como testar:** comandos e passos necessários.
-- **Validação:** testes executados e resultados.
-- **Pendências:** limitações ou decisões que dependem de confirmação.
+- **O que foi feito:** summary of changes.
+- **Arquivos alterados:** list of modified or created files.
+- **Como testar:** required commands and steps.
+- **Validação:** tests executed and results.
+- **Pendências:** limitations or decisions awaiting confirmation.
 
-Não declare que algo funciona sem ter executado uma verificação que sustente essa afirmação.
+Never claim something works without having run a verification that supports it.
